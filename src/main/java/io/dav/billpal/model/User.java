@@ -1,8 +1,11 @@
 package io.dav.billpal.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
@@ -20,6 +23,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 @AllArgsConstructor
 @JsonInclude(NON_DEFAULT)
 public class User {
+
     private Long id;
 
     @NotEmpty(message = "First name cannot be empty")
@@ -48,4 +52,5 @@ public class User {
     private boolean enabled, isNotLocked, isUsingMfa;
 
     private LocalDateTime createdAt;
+
 }
