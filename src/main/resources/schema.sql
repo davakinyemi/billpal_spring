@@ -1,6 +1,6 @@
 ####################################################################
 ###                                                             ####
-### Author: Dave AKN                                             ####
+### Author: Dave AKN                                            ####
 ### Date: November 04th, 2024                                   ####
 ### Version: 1.0                                                ####
 ###                                                             ####
@@ -19,8 +19,7 @@
 CREATE SCHEMA IF NOT EXISTS billpal;
 
 SET NAMES 'UTF8MB4';
-SET TIME_ZONE = 'Europe/Berlin';
-SET TIME_ZONE = '+02:00';
+SET TIME_ZONE = '+01:00';  -- For winter
 
 USE billpal;
 
@@ -41,7 +40,7 @@ CREATE TABLE users
     non_locked   BOOLEAN DEFAULT TRUE,
     using_mfa    BOOLEAN DEFAULT FALSE,
     created_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    image_url    VARCHAR(50) DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+    image_url    VARCHAR(255) DEFAULT 'https://cdn-icons-png.flaticon.com/512/149/149071.png',
     CONSTRAINT UQ_User_Email UNIQUE (email)
 );
 
@@ -114,4 +113,30 @@ CREATE TABLE account_verifications
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT UQ_AccountVerifications_User_Id UNIQUE (user_id),
     CONSTRAINT UQ_AccountVerifications_Url UNIQUE (url)
+);
+
+DROP TABLE IF EXISTS reset_password_verifications;
+
+CREATE TABLE reset_password_verifications
+(
+    id              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id         BIGINT UNSIGNED NOT NULL,
+    url             VARCHAR(255) NOT NULL,
+    expiration_date DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT UQ_ResetPasswordVerifications_User_Id UNIQUE (user_id),
+    CONSTRAINT UQ_ResetPasswordVerifications_Url UNIQUE (url)
+);
+
+DROP TABLE IF EXISTS two_factor_verifications;
+
+CREATE TABLE two_factor_verifications
+(
+    id              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id         BIGINT UNSIGNED NOT NULL,
+    code            VARCHAR(10) NOT NULL,
+    expiration_date DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT UQ_TwoFactorVerifications_User_Id UNIQUE (user_id),
+    CONSTRAINT UQ_TwoFactorVerifications_Code UNIQUE (code)
 );
