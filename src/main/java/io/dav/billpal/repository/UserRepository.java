@@ -1,6 +1,7 @@
 package io.dav.billpal.repository;
 
 import io.dav.billpal.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
@@ -9,6 +10,7 @@ import java.util.Collection;
  * @version 1.0
  * @param <T>
  */
+@Repository
 public interface UserRepository<T extends User> {
     /**
      * basic CRUD operations

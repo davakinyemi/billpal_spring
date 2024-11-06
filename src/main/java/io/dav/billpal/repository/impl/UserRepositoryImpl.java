@@ -34,9 +34,8 @@ import static java.util.Objects.requireNonNull;
 @Slf4j
 public class UserRepositoryImpl implements UserRepository<User> {
 
-
     private final NamedParameterJdbcTemplate jdbcTemplate;
-    private RoleRepository<Role> roleRepository;
+    private final RoleRepository<Role> roleRepository;
 
     @Override
     public User create(User user) {

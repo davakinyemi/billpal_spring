@@ -1,6 +1,7 @@
 package io.dav.billpal.repository;
 
 import io.dav.billpal.model.Role;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
@@ -8,6 +9,7 @@ import java.util.Collection;
  * @author Dave AKN
  * @version 1.0
  */
+@Repository
 public interface RoleRepository<T extends Role> {
     /**
      * basic CRUD operations

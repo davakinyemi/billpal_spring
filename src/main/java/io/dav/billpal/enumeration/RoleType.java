@@ -5,5 +5,5 @@ package io.dav.billpal.enumeration;
  * @version 1.0
  */
 public enum RoleType {
-    ROLE_USER, ROLE_MANAGER, ROLE_ADMIN, ROLE_SYSADMIN;
+    ROLE_USER, ROLE_MANAGER, ROLE_ADMIN, ROLE_SYSADMIN
 }
