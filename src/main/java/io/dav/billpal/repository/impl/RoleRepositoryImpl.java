@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.List;
 
 import static io.dav.billpal.enumeration.RoleType.ROLE_USER;
+import static io.dav.billpal.query.RoleQuery.INSERT_ROLE_TO_USER_QUERY;
+import static io.dav.billpal.query.RoleQuery.SELECT_ROLE_BY_NAME_QUERY;
 import static java.util.Map.of;
 import static java.util.Objects.requireNonNull;
 
@@ -26,8 +28,6 @@ import static java.util.Objects.requireNonNull;
 @Slf4j
 public class RoleRepositoryImpl implements RoleRepository<Role> {
 
-    private static final String SELECT_ROLE_BY_NAME_QUERY = "";
-    private static final String INSERT_ROLE_TO_USER_QUERY = "";
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
