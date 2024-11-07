@@ -60,11 +60,12 @@ public class RoleRepositoryImpl implements RoleRepository<Role> {
         log.info("Adding role {} to user id: {}", roleName, userId);
 
         try {
-            Role role = this.jdbcTemplate.queryForObject(SELECT_ROLE_BY_NAME_QUERY, of("roleName",roleName), new RoleRowMapper());
+            Role role = this.jdbcTemplate.queryForObject(SELECT_ROLE_BY_NAME_QUERY, of("name", roleName), new RoleRowMapper());
             this.jdbcTemplate.update(INSERT_ROLE_TO_USER_QUERY, of("userId", userId, "roleId", requireNonNull(role).getId()));
         } catch (EmptyResultDataAccessException exception) {
             throw new ApiException("No role found by name: " + ROLE_USER.name());
         } catch (Exception exception) {
+            log.error(exception.getMessage());
             throw new ApiException("An error occurred while creating user: " + exception.getMessage() + ". Please try again.");
         }
     }

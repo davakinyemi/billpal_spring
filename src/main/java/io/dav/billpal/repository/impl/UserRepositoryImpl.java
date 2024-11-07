@@ -71,6 +71,7 @@ public class UserRepositoryImpl implements UserRepository<User> {
 
             // throw exception with appropriate message if error occurs
         } catch (Exception exception) {
+            log.error(exception.getMessage());
             throw new ApiException("An error occurred while creating user: " + exception.getMessage() + ". Please try again.");
         }
     }
