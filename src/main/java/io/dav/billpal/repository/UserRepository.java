@@ -28,4 +28,5 @@ public interface UserRepository<T extends User> {
     /**
      * more complex operations
      */
+    User getUserByEmail(String email);
 }

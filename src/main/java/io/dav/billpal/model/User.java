@@ -56,6 +56,6 @@ public class User {
 
     private boolean enabled, isNotLocked, isUsingMfa;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
 
 }

@@ -31,5 +31,5 @@ public class UserDTO {
 
     private boolean enabled, isNotLocked, isUsingMfa;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
 }
